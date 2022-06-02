@@ -14,5 +14,4 @@ In each folder you can find a more in-depth explanation of each component:
 ## Architecture
 
 Take a look at the components diagram that describes them and their interactions.
-![microservice-app-example](https://user-images.githubusercontent.com/1905821/34918427-a931d84e-f952-11e7-85a0-ace34a2e8edb.png)
-
+![microservice-app-example](/arch-img/Microservices.png)
