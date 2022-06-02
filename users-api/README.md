@@ -7,7 +7,7 @@ This service is written in Java with SpringBoot. It provides simple API to retri
 ## Configuration
 
 The service scans environment for variables:
-- `JWT_SECRET` - secret value for JWT token processing.
+- `JWT_SECRET` - secret value for JWT token processing. Must be the same amongst all components.
 - `SERVER_PORT` - the port the service takes.
 
 ## Building
@@ -17,7 +17,7 @@ The service scans environment for variables:
 ```
 ## Running
 ```
-JWT_SECRET=foo SERVER_PORT=8083 java -jar target/users-api-0.0.1-SNAPSHOT.jar
+JWT_SECRET=PRFT SERVER_PORT=8083 java -jar target/users-api-0.0.1-SNAPSHOT.jar
 ```
 ## Dependencies
 Here you can find the software required to run this microservice, as well as the version we have tested. 
