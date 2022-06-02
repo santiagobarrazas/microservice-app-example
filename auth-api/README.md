@@ -38,13 +38,13 @@ Following users are hardcoded for you:
 
 ## Running
 ```
-AUTH_API_PORT=8000 USERS_API_ADDRESS=http://users-api:8082 JWT_SECRET=PRFT ./auth-api
+AUTH_API_PORT=8000 USERS_API_ADDRESS=http://users-api:8083 JWT_SECRET=PRFT ./auth-api
 ```
 
 ## Usage
 In case you need to test this API, you can use it as follows:
 ```
- curl -X POST  127.0.0.1:8000/login -d '{"username": "admin","password": "admin"}'
+ curl -X POST  http://127.0.0.1:8000/login -d '{"username": "admin","password": "admin"}'
 ```
 
 ## Dependencies
