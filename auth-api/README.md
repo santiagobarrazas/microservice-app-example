@@ -38,7 +38,7 @@ Following users are hardcoded for you:
 
 ## Running
 ```
-AUTH_API_PORT=8000 USERS_API_ADDRESS=http://users-api:8083 JWT_SECRET=PRFT ./auth-api
+ JWT_SECRET=PRFT AUTH_API_PORT=8000 USERS_API_ADDRESS=http://127.0.0.1:8083 ./auth-api
 ```
 
 ## Usage
