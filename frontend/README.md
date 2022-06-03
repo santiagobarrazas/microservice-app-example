@@ -1,26 +1,31 @@
-# frontend
+# Frontend
 
-UI for sample distributed TODO app build with VueJS
+UI for sample distributed TODO application.
 
 ## Configuration
 - `PORT` - a port the application binds to 
 - `AUTH_API_ADDRESS` - address of `auth-api` for authentication
 - `TODOS_API_ADDRESS` - address of `todos-api` for TODO CRUD
 
-## Building and running
+## Building
 
 ``` bash
 # install dependencies
 npm install
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
+# build application
 npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Running
+
+``` bash
+PORT=8080 AUTH_API_ADDRESS=http://127.0.0.1:8000 TODOS_API_ADDRESS=http://127.0.0.1:8082 npm start
+```
+
+## Dependencies
+Here you can find the software required to run this microservice, as well as the version we have tested. 
+|  Dependency | Version  |
+|-------------|----------|
+| Node        | 8.17.0   |
+| NPM         | 6.13.4   |
