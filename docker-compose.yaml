@@ -1,0 +1,93 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7.0-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - '6379:6379'
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - cache:/data
+    networks:
+      - mynetwork
+  zipkin:
+    image: ghcr.io/openzipkin/zipkin-slim:${TAG:-latest}
+    container_name: zipkin
+    environment:
+      - STORAGE_TYPE=mem
+      - MYSQL_HOST=mysql
+    ports:
+      - 9411:9411
+    networks:
+      - mynetwork
+  users-api:
+    image: sjbs0212/platforms1-microservices-users-api
+    container_name: users-api
+    ports:
+      - 8083:8083
+    volumes:
+      - users_data:/app/data
+    networks:
+      - mynetwork
+    environment:
+      - JWT_SECRET=PRFT
+      - SERVER_PORT=8083
+  auth-api:
+    image: sjbs0212/platforms1-microservices-auth-api
+    container_name: auth-api
+    ports:
+      - 8000:8000
+    depends_on:
+      - users-api
+    networks:
+      - mynetwork
+    environment:
+      - JWT_SECRET=PRFT
+      - AUTH_API_PORT=8000
+      - USERS_API_ADDRESS=http://users-api:8083
+  todos-api:
+    image: sjbs0212/platforms1-microservices-todos-api
+    container_name: todos-api
+    ports:
+      - 8082:8082
+    depends_on:
+      - redis
+    networks:
+      - mynetwork
+    environment:
+      - JWT_SECRET=PRFT
+      - TODO_API_PORT=8082
+      - REDIS_HOST=redis
+  frontend:
+    image: sjbs0212/platforms1-microservices-frontend
+    container_name: frontend
+    ports:
+      - 8080:8080
+    depends_on:
+      - auth-api
+      - todos-api
+    networks:
+      - mynetwork
+    environment:
+      - AUTH_API_ADDRESS=http://auth-api:8000
+      - TODOS_API_ADDRESS=http://todos-api:8082
+  log-message-processor:
+    image: sjbs0212/platforms1-microservices-log-message-processor
+    container_name: log-message-processor
+    depends_on:
+      - redis
+    networks:
+      - mynetwork
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_CHANNEL=log_channel
+networks:
+  mynetwork:
+    driver: bridge
+volumes:
+  cache:
+    driver: local
+  users_data:
+    driver: local
