@@ -7,4 +7,8 @@ RUN apk add --no-cache libc6-compat
 
 EXPOSE 8000
 
-CMD ["./auth-api","JWT_SECRET=PRFT","AUTH_API_PORT=8000","USERS_API_ADDRESS=http://127.0.0.1:8083"]
+ENV JWT_SECRET=PRFT
+ENV AUTH_API_PORT=8000
+ENV USERS_API_ADDRESS=http://127.0.0.1:8083
+
+CMD ["./auth-api"]

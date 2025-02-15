@@ -10,4 +10,7 @@ ARG JAR_FILE=target/users-api-0.0.1-SNAPSHOT.jar
 
 ADD ${JAR_FILE} app.jar
 
-CMD ["java","-jar","/app.jar","JWT_SECRET=PRFT","SERVER_PORT=8083"]
+ENV JWT_SECRET=PRFT
+ENV SERVER_PORT=8083 
+
+CMD ["java","-jar","/app.jar"]
