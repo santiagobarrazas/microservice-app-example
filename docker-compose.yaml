@@ -5,7 +5,7 @@ services:
     container_name: redis
     restart: always
     ports:
-      - '6379:6379'
+      - 6379:6379
     command: redis-server --save 20 1 --loglevel warning
     volumes:
       - cache:/data
@@ -28,11 +28,15 @@ services:
       - 8083:8083
     volumes:
       - users_data:/app/data
+    depends_on:
+      - zipkin
     networks:
       - mynetwork
     environment:
       - JWT_SECRET=PRFT
       - SERVER_PORT=8083
+      - ZIPKIN_URL=zipkin
+      - ZIPKIN_PORT=9411
   auth-api:
     image: sjbs0212/platforms1-microservices-auth-api
     container_name: auth-api
