@@ -1,0 +1,15 @@
+FROM node:8.17.0-alpine AS node
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+ENV JWT_SECRET=PRFT
+ENV TODO_API_PORT=8082
+ENV REDIS_HOST=172.20.0.2
+
+EXPOSE 8082
+
+CMD ["npm","start"]
