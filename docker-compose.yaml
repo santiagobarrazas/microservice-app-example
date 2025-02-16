@@ -81,12 +81,14 @@ services:
     container_name: log-message-processor
     depends_on:
       - redis
+      - zipkin
     networks:
       - mynetwork
     environment:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - REDIS_CHANNEL=log_channel
+      - ZIPKIN_URL=http://zipkin:9411
 networks:
   mynetwork:
     driver: bridge
