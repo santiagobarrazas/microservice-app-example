@@ -13,4 +13,4 @@ ENV REDIS_PORT=6379
 ENV REDIS_CHANNEL=log_channel
 ENV ZIPKIN_URL=127.0.0.1
 
-CMD ["python3","main.py"]
+CMD ["python3","-u","main.py"]
