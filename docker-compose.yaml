@@ -1,4 +1,3 @@
-version: '3.8'
 services:
   redis:
     image: redis:7.0-alpine
@@ -51,7 +50,7 @@ services:
       - JWT_SECRET=PRFT
       - AUTH_API_PORT=8000
       - USERS_API_ADDRESS=http://users-api:8083
-      - ZIPKIN_URL=http://zipkin:9411
+      - ZIPKIN_URL=http://zipkin:9411/api/v2/spans
   todos-api:
     image: sjbs0212/platforms1-microservices-todos-api
     container_name: todos-api
@@ -67,7 +66,7 @@ services:
       - TODO_API_PORT=8082
       - REDIS_HOST=redis
       - REDIS_PORT=6379
-      - ZIPKIN_URL=http://zipkin:9411
+      - ZIPKIN_URL=http://zipkin:9411/api/v2/spans
   frontend:
     image: sjbs0212/platforms1-microservices-frontend
     container_name: frontend
