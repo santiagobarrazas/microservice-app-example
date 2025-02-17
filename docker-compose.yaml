@@ -94,7 +94,7 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
       - REDIS_CHANNEL=log_channel
-      - ZIPKIN_URL=http://zipkin:9411
+      - ZIPKIN_URL=http://zipkin:9411/api/v2/spans
 networks:
   mynetwork:
     driver: bridge
