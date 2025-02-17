@@ -57,12 +57,15 @@ services:
       - 8082:8082
     depends_on:
       - redis
+      - zipkin
     networks:
       - mynetwork
     environment:
       - JWT_SECRET=PRFT
       - TODO_API_PORT=8082
       - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - ZIPKIN_URL=http://zipkin:9411
   frontend:
     image: sjbs0212/platforms1-microservices-frontend
     container_name: frontend
