@@ -44,12 +44,14 @@ services:
       - 8000:8000
     depends_on:
       - users-api
+      - zipkin
     networks:
       - mynetwork
     environment:
       - JWT_SECRET=PRFT
       - AUTH_API_PORT=8000
       - USERS_API_ADDRESS=http://users-api:8083
+      - ZIPKIN_URL=http://zipkin:9411
   todos-api:
     image: sjbs0212/platforms1-microservices-todos-api
     container_name: todos-api
@@ -74,11 +76,13 @@ services:
     depends_on:
       - auth-api
       - todos-api
+      - zipkin
     networks:
       - mynetwork
     environment:
       - AUTH_API_ADDRESS=http://auth-api:8000
       - TODOS_API_ADDRESS=http://todos-api:8082
+      - ZIPKIN_URL=http://zipkin:9411/api/v2/spans
   log-message-processor:
     image: sjbs0212/platforms1-microservices-log-message-processor
     container_name: log-message-processor
