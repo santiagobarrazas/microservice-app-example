@@ -1,0 +1,10 @@
+#Se añade a la documentación puesto que es necesario Zipkin se utiliza para implementar trazabilidad distribuida en una arquitectura de microservicios poliglota
+# Imagen base
+FROM openzipkin/zipkin
+
+# Puerto que usará Zipkin
+EXPOSE 9411
+
+CMD ["java", "-jar", "/zipkin.jar"]
+
+
